@@ -6,7 +6,7 @@ function somma(x, y) {
     return (x + y);
 };
 
-console.log(somma(7, 3));
+// console.log(somma(7, 3));
 
 // Poi, definisci la stessa funzione somma ma come funzione anonima assegnata a una variabile
 
@@ -14,7 +14,7 @@ const sommaAnonima = function (x, y) {
     return (x + y);
 };
 
-console.log(sommaAnonima(12, 5));
+// console.log(sommaAnonima(12, 5));
 
 // Quindi, riscrivi la funzione somma con la sintassi delle arrow functions
 
@@ -22,7 +22,7 @@ const sommaArrow = (x, y) => {
     return (x + y);
 };
 
-console.log(sommaArrow(6, 9));
+// console.log(sommaArrow(6, 9));
 
 // Snack 2
 
@@ -32,7 +32,7 @@ console.log(sommaArrow(6, 9));
 
 const quadrato = (x) => x * x;
 
-console.log(quadrato(3));
+// console.log(quadrato(3));
 
 // Snack 3
 
@@ -47,7 +47,7 @@ const divisione = (x, y) => x / y;
 
 const eseguiOperazione = (x, y, operazione) => operazione(x, y)
 
-console.log(eseguiOperazione(13, 5, sottrazione));
+// console.log(eseguiOperazione(13, 5, sottrazione));
 // console.log(eseguiOperazione(10, 5, divisione));
 
 // Snack 4
@@ -57,9 +57,10 @@ console.log(eseguiOperazione(13, 5, sottrazione));
 // Scrivi una funzione creaTimer che accetta un tempo (in ms) e 
 // restituisce una nuova funzione che avvia un setTimeout per stampare "Tempo scaduto!".
 
-const creaTimer = (tempo) => setTimeout(() => console.log("Tempo scaduto!"), tempo);
+const creaTimer = (tempo) => () => { setTimeout(() => console.log("Tempo scaduto!"), tempo); }
 
-creaTimer(1000);
+const timer = creaTimer(1000);
+// timer();
 
 // Snack 5
 
@@ -83,10 +84,16 @@ const stampaOgniSecondo = (text) => setInterval(() => console.log(text), 1000);
 const creaContatoreAutomatico = (tempo) => {
 
     let contatore = 0;
-    return setInterval(() => console.log(contatore++), tempo)
+    return () => {
+        setInterval(() => {
+            contatore++;
+            console.log(contatore);
+        }, tempo)
+    }
 }
 
-// creaContatoreAutomatico(3000)
+// const conta = creaContatoreAutomatico(3000)
+// conta()
 
 // Snack 7
 
@@ -124,7 +131,7 @@ const contoAllaRovescia = (n) => {
 
 }
 
-contoAllaRovescia(3);
+// contoAllaRovescia(3);
 
 // Snack 9 (Bonus)
 
@@ -141,18 +148,18 @@ const sequenzaOperazioni = (lista, tempo) => {
 
 }
 
-sequenzaOperazioni([
-    () => console.log("Operazione 1"),
-    () => console.log("Operazione 2"),
-    () => console.log("Operazione 3")
-], 2000);
+// sequenzaOperazioni([
+//     () => console.log("Operazione 1"),
+//     () => console.log("Operazione 2"),
+//     () => console.log("Operazione 3")
+// ], 2000);
 
 // Snack 10 (Bonus)
 
 // Creare un throttler per limitare l’esecuzione di una funzione
 
 // Scrivi una funzione creaThrottler che accetta una funzione e un tempo `limite`.
-// Restituisce una nuova funzione che, quando chiamata ripetutamente, 
+// Restituisce una nuova funzione che, quando chiamata ripetutamente,
 // esegue l'operazione originale al massimo una volta ogni n millisecondi.
 
 // const creaThrottler = (funzione, tempo) => {
